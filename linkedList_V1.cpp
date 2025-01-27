@@ -19,9 +19,23 @@ int printInReverse(node* head){
 int print(node* head){
                if(head!= NULL){
                cout<<head->data<<endl;
-               printInReverse(head->next);
+               print(head->next);
                }
 }
+
+int findMiddle(node* head) {
+
+    node* Slow = head;
+    node* fast = head;
+
+    while (fast != NULL && fast->next != NULL) {
+        fast = fast->next->next;
+        Slow = Slow->next;
+    }
+
+    return Slow->data;
+}
+
 
 
 int main(){
@@ -39,8 +53,12 @@ int main(){
                third->next = NULL ; 
                third->next = NULL; 
                second->next = third; 
-               print(head);
-               cout<<"printing the list in reverse"<<endl;
-               printInReverse(head);
-               
+
+               node * fourth = new node();
+               fourth->data = 40 ;
+               fourth->next = NULL ; 
+               third->next = fourth; 
+           
+               cout<<"the middle element is "<<findMiddle(head)<<endl;
+          
 }
